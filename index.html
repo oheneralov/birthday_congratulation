@@ -1,10 +1,9 @@
-<html>
-
+<!DOCTYPE html>
 <head>
     <style>
         #text {
             text-align: center;
-            font-size: 40pt;
+            font-size: 70pt;
             margin-top: 20%;
             font-family: 'Schoolbell', arial, serif;
             color:azure;
@@ -12,10 +11,17 @@
         }
 
         body {
-            background-image: url('images/winter.jpeg');
+            background-image: url('images/winter2.jpeg');
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: 100% 120%;
+        }
+
+        .lips {
+            display:block;
+            position:absolute;
+            top: 277px;
+            left: 786px;
         }
     </style>
     <link href="https://fonts.googleapis.com/css?family=Schoolbell&v1" rel="stylesheet">
@@ -28,11 +34,17 @@
     </div>
     <div id="text">
     </div>
+    <div class="lips">
+        <img src='images/mouth2.png' height="63px" width="270" id="lips" />
+    </div>
     <script src="video.js">
     </script>
     <script>
         // main
-        showText();
+        showText().then(function() {
+            moveLips(30);
+        })
+        
     </script>
 </body>
 

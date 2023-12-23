@@ -54,8 +54,22 @@ async function showText() {
     for (let word of words) {
         elem.innerText = word;
         await fadeIn(elem);
-        await sleep(1);
+        await sleep(2);
         await fadeOut(elem);
-        await sleep(1);
+        await sleep(2);
+    }
+}
+
+async function moveLips(iterations = 10) {
+    const elem = document.getElementById('text');
+    const mouthOpenHeight = 5;
+    for (let iter = 1; iter <= iterations; iter++) {
+        const elem = document.getElementById('lips');
+    
+        elem.height += mouthOpenHeight; // open mouth
+        await sleep(0.2);
+        elem.height -= mouthOpenHeight;  // close mouth
+        await sleep(0.2);
+
     }
 }
