@@ -50,7 +50,7 @@ async function showText() {
         ['Merry Christmas!', 'Mr. Moon will congratulate you with Christmas'];
     const elem = document.getElementById('text');
     elem.style.opacity = 0;
-    
+
     for (let word of words) {
         elem.innerText = word;
         await fadeIn(elem);
@@ -60,16 +60,33 @@ async function showText() {
     }
 }
 
-async function moveLips(iterations = 10) {
-    const elem = document.getElementById('text');
-    const mouthOpenHeight = 5;
-    for (let iter = 1; iter <= iterations; iter++) {
-        const elem = document.getElementById('lips');
-    
-        elem.height += mouthOpenHeight; // open mouth
-        await sleep(0.2);
-        elem.height -= mouthOpenHeight;  // close mouth
-        await sleep(0.2);
+function shouldPause(interval, pauses) {
+    const result = pauses.find(elem => interval >= elem.start && interval <= elem.end);
+    if (result === undefined) {
+        return false
+    }
+    return true;
+}
 
+async function moveLips(generalPlayTime = 0, pauses) {
+    const start = Date.now() / 1000;
+    const myAudio = document.getElementById("myAudio");
+
+    const lips = document.getElementById('lips');
+    const mouthHeight = lips.height;
+    const mouthOpenHeight = 5;
+    let timePassed = 0;
+    myAudio.play();
+
+    while ( timePassed  < generalPlayTime  ) {
+        timeNow =  Date.now() / 1000;
+        timePassed =  timeNow - start;
+        console.log(timePassed);
+        if (shouldPause(timePassed, pauses) === false) {
+            lips.height = mouthHeight + mouthOpenHeight; // open mouth
+            await sleep(0.2);
+            lips.height = mouthHeight;  // close mouth
+            await sleep(0.2);
+        } 
     }
 }

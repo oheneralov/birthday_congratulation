@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <head>
     <style>
         #text {
@@ -6,7 +7,7 @@
             font-size: 70pt;
             margin-top: 20%;
             font-family: 'Schoolbell', arial, serif;
-            color:azure;
+            color: azure;
 
         }
 
@@ -18,8 +19,8 @@
         }
 
         .lips {
-            display:block;
-            position:absolute;
+            display: block;
+            position: absolute;
             top: 277px;
             left: 786px;
         }
@@ -37,14 +38,23 @@
     <div class="lips">
         <img src='images/mouth2.png' height="63px" width="270" id="lips" />
     </div>
+    <audio id="myAudio">
+        <source src="audio/congratulation.ogg" type="audio/ogg">
+        Your browser does not support the audio element.
+    </audio>
     <script src="video.js">
     </script>
     <script>
         // main
-        showText().then(function() {
-            moveLips(30);
+        showText().then(function () {
+            /*
+My dear friends! Merry Christmas and the best wishes to you! May all your dreams come true! This music is for you!
+            */
+           const pauses = [{start: 1, end: 1.5}, {start: 3.6, end: 4.5}, {start: 5.9, end: 6.85}];
+           const generalPlayTime = 7.5;
+            moveLips(generalPlayTime, pauses);
         })
-        
+
     </script>
 </body>
 
