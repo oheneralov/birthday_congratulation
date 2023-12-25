@@ -42,19 +42,26 @@
         <source src="audio/congratulation.ogg" type="audio/ogg">
         Your browser does not support the audio element.
     </audio>
+    <audio id="music">
+        <source src="audio/christmas.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
     <script src="video.js">
     </script>
     <script>
-        // main
-        showText().then(function () {
-            /*
+        /*
 My dear friends! Merry Christmas and the best wishes to you! May all your dreams come true! This music is for you!
-            */
-           const pauses = [{start: 1, end: 1.5}, {start: 3.6, end: 4.5}, {start: 5.9, end: 6.85}];
-           const generalPlayTime = 7.5;
-            moveLips(generalPlayTime, pauses);
-        })
-
+*/
+        const pauses = [{ start: 1, end: 1.5 }, { start: 3.6, end: 4.5 }, { start: 5.9, end: 6.85 }];
+        const generalPlayTime = 7.5;
+        // main
+        async function main() {
+            await showText(['Merry Christmas!', 'Mr. Moon will congratulate you with Christmas']);
+            await moveLips(generalPlayTime, pauses);
+            await showText(['This music is for you!'], false);
+            await playMusic('music');
+        }
+        main();
     </script>
 </body>
 

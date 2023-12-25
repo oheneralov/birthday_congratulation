@@ -45,18 +45,18 @@ async function showImages() {
 }
 
 // saruwakakun.com/en/web-safe-fonts
-async function showText() {
-    const words =
-        ['Merry Christmas!', 'Mr. Moon will congratulate you with Christmas'];
+async function showText(words, disappear = true) {
     const elem = document.getElementById('text');
     elem.style.opacity = 0;
 
     for (let word of words) {
         elem.innerText = word;
         await fadeIn(elem);
-        await sleep(2);
-        await fadeOut(elem);
-        await sleep(2);
+        if (disappear) {
+            await sleep(2);
+            await fadeOut(elem);
+            await sleep(2);
+        }
     }
 }
 
@@ -89,4 +89,9 @@ async function moveLips(generalPlayTime = 0, pauses) {
             await sleep(0.2);
         } 
     }
+}
+
+async function playMusic(id) {
+    const myAudio = document.getElementById(id);
+    myAudio.play();
 }
